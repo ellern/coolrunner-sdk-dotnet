@@ -14,6 +14,6 @@ namespace CoolRunner.SDK.Clients
             _httpClient = httpClient;
         }
 
-        public Task<FreightRates> Get(string countryCode) => GetAsync<FreightRates>(Endpoints.FreightRates(countryCode));
+        public Task<FreightRates> Get(string countryCode) => GetAsync<FreightRates>(Endpoints.FreightRates(countryCode), true);
     }
 }

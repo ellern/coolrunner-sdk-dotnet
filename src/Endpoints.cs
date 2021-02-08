@@ -4,21 +4,23 @@ namespace CoolRunner.SDK
 {
     internal static partial class Endpoints
     {
-        public static Uri Me() => "me".FormatUri();
+        public static Uri Me() => "v1/me".FormatUri();
 
-        public static Uri Shipments(string action) => $"shipment/{action}".FormatUri();
-        public static Uri Shipments(string action, int shipmentId) => $"shipment/{action}/{shipmentId}".FormatUri();
+        public static Uri PCN(string type, string action) => $"pcn/{type}/{action}".FormatUri();
 
-        public static Uri PDF(string uniqueId) => $"pdf/{uniqueId}".FormatUri();
+        public static Uri Shipments(string action) => $"v1/shipment/{action}".FormatUri();
+        public static Uri Shipments(string action, int shipmentId) => $"v1/shipment/{action}/{shipmentId}".FormatUri();
 
-        public static Uri DropPoints(string carrier) => $"droppoints/{carrier}".FormatUri();
+        public static Uri PDF(string uniqueId) => $"v1/pdf/{uniqueId}".FormatUri();
 
-        public static Uri FreightRates(string countryCode) => $"freight_rates/{countryCode}".FormatUri();
+        public static Uri DropPoints(string carrier) => $"v1/droppoints/{carrier}".FormatUri();
 
-        public static Uri Insurance(string action) => $"insurance/{action}".FormatUri();
+        public static Uri FreightRates(string countryCode) => $"v1/freight_rates/{countryCode}".FormatUri();
 
-        public static Uri Manifests(string action) => $"manifest/{action}".FormatUri();
+        public static Uri Insurance(string action) => $"v1/insurance/{action}".FormatUri();
 
-        public static Uri Tracking(int packageNumber) => $"tracking/{packageNumber}".FormatUri();
+        public static Uri Manifests(string action) => $"v1/manifest/{action}".FormatUri();
+
+        public static Uri Tracking(string packageNumber) => $"v1/tracking/{packageNumber}".FormatUri();
     }
 }

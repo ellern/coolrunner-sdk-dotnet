@@ -9,6 +9,11 @@ using System.Threading.Tasks;
 
 namespace CoolRunner.SDK
 {
+    /// <summary>
+    /// CoolRunner docs available at:
+    /// https://docs.coolrunner.dk/
+    /// https://docs.coolrunner.dk/pcn/
+    /// </summary>
     public class CoolRunnerClient
     {
         private readonly HttpClient _httpClient;
@@ -18,6 +23,7 @@ namespace CoolRunner.SDK
 
         public FreightRatesClient FreightRates { get; set; }
         public ShipmentsClient Shipments { get; set; }
+        public InventNordClient InventNord { get; set; }
 
         /// <summary>
         /// Creates a new instance of the CoolRunnerClient
@@ -27,13 +33,14 @@ namespace CoolRunner.SDK
         /// <param name="developerId">The value could be your company name or name of the integration, and maybe even include a version number</param>
         public CoolRunnerClient(string apiEmail, string apiToken, string developerId)
         {
-            _url = "https://api.coolrunner.dk/v1/";
+            _url = "https://api.coolrunner.dk/";
             _apiEmail = apiEmail;
             _apiToken = apiToken;
             _httpClient = BuildHttpClient(_url, $"{_apiEmail}:{_apiToken}", developerId, null);
 
             FreightRates = new FreightRatesClient(_httpClient);
             Shipments = new ShipmentsClient(_httpClient);
+            InventNord = new InventNordClient(_httpClient);
         }
 
         /// <summary>

@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <PackageId>CoolRunner.SDK</PackageId>
     <Company />
-    <Version>1.0.0-beta1</Version>
+    <Version>1.0.0-beta2</Version>
     <Product>CoolRunner SDK</Product>
     <Description>CoolRunner SDK for .NET Core. Open Source client for CoolRunner's API.</Description>
     <PackageProjectUrl>https://github.com/ellern/coolrunner-sdk-dotnet</PackageProjectUrl>

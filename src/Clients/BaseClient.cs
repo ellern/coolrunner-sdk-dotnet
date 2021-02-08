@@ -22,7 +22,7 @@ namespace CoolRunner.SDK.Clients
 
         internal HttpClient HttpClient { get { return _httpClient; } }
 
-        internal virtual async Task<T> GetAsync<T>(Uri endpoint, CancellationToken cancellationToken = default(CancellationToken))
+        internal virtual async Task<T> GetAsync<T>(Uri endpoint, bool wrapped = false, CancellationToken cancellationToken = default(CancellationToken))
         {
             using (var request = new HttpRequestMessage(HttpMethod.Get, endpoint))
             using (var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false))
@@ -31,14 +31,21 @@ namespace CoolRunner.SDK.Clients
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var result = DeserializeJsonFromStream<ApiResult<T>>(stream);
-
-                    if (result == null)
+                    if (wrapped)
                     {
-                        return default;
-                    }
+                        var result = DeserializeJsonFromStream<ApiResult<T>>(stream);
 
-                    return result.Result;
+                        if (result == null)
+                        {
+                            return default;
+                        }
+
+                        return result.Result;
+                    }
+                    else
+                    {
+                        return DeserializeJsonFromStream<T>(stream);
+                    }
                 }
 
                 var content = await StreamToStringAsync(stream).ConfigureAwait(false);
